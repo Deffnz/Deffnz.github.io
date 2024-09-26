@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James Ken Portfolio</title>
+    <title>Denys Khvalin Portfolio</title>
     <style>
         body {
             background-color: #f8f8f8;
@@ -14,16 +14,17 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 70px;
+            padding: 10px 20px;
             box-shadow: 0px 0px 30px;
             border-radius: 20px;
-            margin-top: 50px;
+            margin-top: 20px;
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
         }
         header h1 {
             margin: 0;
@@ -34,14 +35,16 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-wrap: wrap; /* Allows items to wrap inside the container */
         }
         nav ul li {
-            margin-left: 20px;
+            margin: 5px 10px; /* Reduced margin for smaller screens */
         }
         nav ul li a {
             text-decoration: none;
             color: #000;
             font-weight: bold;
+            padding: 5px 10px; /* Added padding for clickable area */
         }
         .hire-me {
             background-color: #d8b1a0;
@@ -50,25 +53,29 @@
             padding: 10px 20px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 10px; /* Added margin for spacing */
         }
         .main-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 40px 0;
+            flex-wrap: wrap; /* Allows main content to wrap on smaller screens */
         }
         .main-content .info {
-            max-width: 50%;
+            max-width: 100%;
+            flex-basis: 50%; /* Adjusted to use flexbox */
+            padding: 10px;
         }
         .main-content .info h2 {
-            font-size: 48px;
+            font-size: 32px;
             margin: 0;
         }
         .main-content .info h2 span {
             color: #6c63ff;
         }
         .main-content .info p {
-            font-size: 18px;
+            font-size: 16px;
             color: #777;
             margin: 20px 0;
         }
@@ -91,7 +98,9 @@
             margin-left: 10px;
         }
         .main-content .photo {
-            max-width: 40%;
+            max-width: 100%;
+            flex-basis: 40%; /* Adjusted to use flexbox */
+            padding: 10px;
         }
         .main-content .photo img {
             width: 100%;
@@ -102,39 +111,41 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
         }
         .social-links a {
-            margin: 0 10px;
+            margin: 5px 10px; /* Reduced margin for smaller screens */
             font-size: 24px;
             color: #000;
             text-decoration: none;
         }
-        .projects-container {
+        .projects-container, .contact-container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 20px auto;
             padding: 20px;
             box-shadow: 0px 0px 30px;
             border-radius: 20px;
         }
-        .projects h2 {
+        .projects h2, .contact h2 {
             text-align: center;
             font-size: 36px;
             margin-bottom: 20px;
         }
-        .project-grid {
+        .project-grid, .contact-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-        .project {
-            width: 30%;
+        .project, .contact-info {
+            width: calc(100% / 3 - 40px);
             min-width: 250px;
             position: relative;
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            margin-bottom: 20px;
         }
         .project img {
             width: 100%;
@@ -158,33 +169,6 @@
         .project:hover .project-info {
             opacity: 1;
         }
-        .contact-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            box-shadow: 0px 0px 30px;
-            border-radius: 20px;
-        }
-        .contact h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .contact-info {
-            width: 30%;
-            min-width: 250px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            text-align: center;
-        }
         footer {
             background-color: #333;
             color: #fff;
@@ -195,6 +179,35 @@
         footer p {
             margin: 0;
         }
+
+        /* Media Query for Mobile Devices */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-content {
+                flex-direction: column; /* Stack content vertically */
+                text-align: center;
+            }
+            .main-content .info, .main-content .photo {
+                max-width: 100%;
+                flex-basis: auto;
+            }
+            .main-content .info h2 {
+                font-size: 24px; /* Reduced font size for mobile */
+            }
+            .project, .contact-info {
+                width: 100%; /* Full width on mobile */
+            }
+            nav ul {
+                flex-direction: column; /* Vertical menu for mobile */
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -203,19 +216,19 @@
             <h1>Denys Khvalin</h1>
             <nav>
                 <ul>
-                    <li><a href="#home">Головна</a></li>
-                    <li><a href="#project">Мої проекти</a></li>
-                    <li><a href="#contacts">Контакти</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#project">My Projects</a></li>
+                    <li><a href="#contacts">Contacts</a></li>
                 </ul>
             </nav>
             <button class="hire-me">Hire Me</button>
         </header>
         <div class="main-content">
             <div class="info">
-                <h2>Про те що <br> <span>Я знаю</span></h2>
-                <p>Я знаю мову кодування : Python <br>Вмію кодувати з функціями та класами<br>
-                Також багато бібліотек таких як : TkInter , CTkInter , PyGameZero ,<br>random , sqlite3 , requests , time та ще багато інших<br>
-                Ще знаю мову HTML <br> за іншим до мого CV
+                <h2>About What <br> <span>I Know</span></h2>
+                <p>I know programming language: Python. <br>I am familiar with functions and classes.<br>
+                Also experienced with many libraries like: TkInter, CTkInter, PyGameZero,<br> random, sqlite3, requests, time, and many others.<br>
+                I also know HTML.<br>For more, check my CV.
                 </p>
                 <a href="#" class="download-cv">Download CV <i>&#9654;</i></a>
             </div>
@@ -232,27 +245,27 @@
     </div>
     <div class="container" id="project">
         <div class="projects">
-            <h2>Мої проекти</h2>
+            <h2>My Projects</h2>
             <div class="project-grid">
                 <div class="project">
-                    <img src="images/1_progekt.png" alt="Project 1">
+                    <img src="https://via.placeholder.com/300" alt="Project 1">
                     <div class="project-info">
-                        <h3>Проект 1</h3>
-                        <p>Опис проекту 1</p>
+                        <h3>Project 1</h3>
+                        <p>Description of Project 1</p>
                     </div>
                 </div>
                 <div class="project">
                     <img src="https://via.placeholder.com/300" alt="Project 2">
                     <div class="project-info">
-                        <h3>Проект 2</h3>
-                        <p>Опис проекту 2</p>
+                        <h3>Project 2</h3>
+                        <p>Description of Project 2</p>
                     </div>
                 </div>
                 <div class="project">
                     <img src="https://via.placeholder.com/300" alt="Project 3">
                     <div class="project-info">
-                        <h3>Проект 3</h3>
-                        <p>Опис проекту 3</p>
+                        <h3>Project 3</h3>
+                        <p>Description of Project 3</p>
                     </div>
                 </div>
             </div>
@@ -260,25 +273,25 @@
     </div>
     <div class="container" id="contacts">
         <div class="contact">
-            <h2>Контакти</h2>
+            <h2>Contacts</h2>
             <div class="contact-grid">
                 <div class="contact-info">
                     <h3>Email</h3>
-                    <p>hdenenis@gmail.com</p>
+                    <p>hdenenis@example.com</p>
                 </div>
                 <div class="contact-info">
-                    <h3>Телефон</h3>
-                    <p>+380 6801 26407</p>
+                    <h3>Phone</h3>
+                    <p>+380 680 126 407</p>
                 </div>
                 <div class="contact-info">
-                    <h3>Адреса</h3>
-                    <p>Clifden, Co.Golway, Ireland</p>
+                    <h3>Address</h3>
+                    <p>Clifden, Co.Galway, Ireland</p>
                 </div>
             </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Denys Khvalin. Всі права захищені.</p>
+        <p>&copy; 2024 Denys Khvalin. All Rights Reserved.</p>
     </footer>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
