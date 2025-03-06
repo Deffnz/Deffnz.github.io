@@ -63,17 +63,17 @@
             position: fixed;
             top: 0;
             left: -100%;
-            width: 25%; /* Теперь меню закрывает всю ширину экрана */
+            width: 25%;
             height: 100%;
             background-color: rgb(53, 53, 53);
             color: white;
             padding: 20px;
             transition: left 0.5s ease;
-            z-index: 3; /* Поднял выше, чтобы меню перекрывало навбар */
+            z-index: 3;
         }
 
         .sidebar.open {
-            left: 0; /* Панель выезжает, когда класс open */
+            left: 0;
         }
 
         .sidebar a {
@@ -82,27 +82,23 @@
             display: block;
             margin: 20px 0px 0px;
             font-size: 120%;
+            cursor: pointer;
         }
 
         main {
             color: rgb(0, 0, 0);
-            padding: 0;
+            padding: 20px;
         }
 
-        main img {
-            height: 120%;
-            width: 60%; /* Ширина изображения 80% от ширины экрана */
-            display: block; /* Делаем изображение блочным элементом */
-            margin-left: 20%; /* Автоматический левый отступ */
-            margin-top: 50px;
-            margin-bottom: 50px;
+        main img{
+            width: 80%;
+            margin-left: 10%;
+            padding: 50px 0px 50px 0px ;
         }
-
+        
         main p {
             font-size: 17px;
-            margin:10px;
-            margin-right: 50px;
-            margin-bottom: 90px;
+            margin-bottom: 50px;
         }
 
         footer {
@@ -119,6 +115,67 @@
             margin: 0;
             color: white;
         }
+        .column {
+            flex: 1;
+            text-align: center;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .box {
+            width: 90%;
+            height: 150px;
+            background-color: #ddd;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform 0.3s;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .box:hover {
+            transform: scale(1.1);
+        }
+        .box:hover .text {
+            bottom: 0;
+        }
+        .text {
+            position: absolute;
+            bottom: -30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
+            transition: bottom 0.3s;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .contact-box {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+        }
+        .contact-box a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .center {
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
@@ -132,14 +189,14 @@
 
     <!-- Сайдбар для меню -->
     <div class="sidebar">
-        <a href="#">Home</a>
-        <a href="#">My Skills</a>
-        <a href="#">My Projects</a>
-        <a href="#">About Me</a>
-        <a href="#">Contacts</a>
+        <a onclick="loadPage('2home.html')">Home</a>
+        <a onclick="loadPage('3skills.html')">My Skills</a>
+        <a onclick="loadPage('4projects.html')">My Projects</a>
+        <a onclick="loadPage('5about.html')">About Me</a>
+        <a onclick="loadPage('6contacts.html')">Contacts</a>
     </div>
 
-    <main>
+    <main id="content">
         <img src="azwv93v435kirw7muyl9x5d7cqbj02px.jpg" alt="Логотип CV">
         <p>## Привет! Добро пожаловать на мой сайт — это мое цифровое резюме.  
 
@@ -171,6 +228,7 @@
             Спасибо, что заглянули! Надеюсь, вам будет интересно изучить мое портфолио. 🚀</p>
     </main>
 
+
     <footer>
         <p>© 2025 Hvalin Denys</p>
     </footer>
@@ -182,9 +240,7 @@
 
         menuBtn.addEventListener('click', function () {
             sidebar.classList.toggle('open');
-            
             menuBtn.classList.toggle('active');
-            
             if (menuBtn.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
@@ -193,6 +249,15 @@
                 icon.classList.add('fa-bars');
             }
         });
+
+        function loadPage(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => console.log('Ошибка загрузки страницы:', error));
+        }
     </script>
 </body>
 </html>
